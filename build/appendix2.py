@@ -25,7 +25,10 @@ PHOTOS={
 PHOTOS2={"01":"assets3/z01_dc2.jpg","02":"assets3/z02_robotics2.jpg","03":"assets3/z03_aviation2.jpg",
  "04":"assets3/z04_biomed2.jpg","05":"assets3/z05_electronics2.jpg","06":"assets3/z06_tire2.jpg",
  "07":"assets3/z07_rail2.jpg","08":"assets3/z08_station2.jpg","09":"assets3/z09_truckhub2.jpg",
- "14":"assets3/z14_labs2.jpg"}
+ "14":"assets3/z14_labs2.jpg","12":"assets3/z12_housing2.jpg","13":"assets3/z13_university2.jpg",
+ "15":"assets3/z15_school2.jpg","16":"assets3/z16_kindergarten2.jpg","17":"assets3/z17_hospital2.jpg",
+ "18":"assets3/z18_mall2.jpg","19":"assets3/z19_water2.jpg","21":"assets3/z21_substation2.jpg",
+ "22":"assets3/z22_roads2.jpg","24":"assets3/z24_control2.jpg"}
 
 def pic(s,path,x,y,w,h):
     if not path or not os.path.exists(path): return False
