@@ -220,7 +220,7 @@ def contents():
         hair(s,y+0.30,x,5.9)
         for j,it in enumerate(items):
             txt(s,x,y+0.42+j*0.295,5.9,0.28,it,8.6,False,SUB if j%2==0 else MUT,sp=1.1)
-    txt(s,M,6.96,CW,0.3,"Каждая зона — два слайда: назначение и состав, затем технология, инженерия и границы.",8.2,False,DIM)
+    txt(s,M,6.96,CW,0.3,"Каждая зона — четыре слайда: обложка, состав, технология, цифры и ограничения.",8.2,False,DIM)
 
 def card(z,idx,total):
     s=sld()
