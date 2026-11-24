@@ -16,6 +16,10 @@ PHOTOS={
  "01":"assets3/z01_dc.jpg","02":"assets3/z02_robotics.jpg","03":"assets3/z03_aviation.jpg",
  "04":"assets3/z04_biomed.jpg","05":"assets3/z05_electronics.jpg","06":"assets3/z06_auto.jpg",
  "07":"assets3/z07_rail.jpg","08":"assets3/z08_station.jpg","09":"assets3/z09_truckhub.jpg",
+ "10":"assets3/z10_warehouse.jpg","11":"assets3/z11_customs.jpg","12":"assets3/z12_housing.jpg",
+ "13":"assets3/z13_university.jpg","14":"assets3/z14_labs.jpg","15":"assets3/z15_school.jpg",
+ "16":"assets3/z16_kindergarten.jpg","17":"assets3/z17_hospital.jpg","18":"assets3/z18_mall.jpg",
+ "19":"assets3/z19_water.jpg",
 }
 PHOTOS2={"06":"assets3/z06_tire.jpg"}
 
