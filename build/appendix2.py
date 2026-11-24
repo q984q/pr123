@@ -19,7 +19,8 @@ PHOTOS={
  "10":"assets3/z10_warehouse.jpg","11":"assets3/z11_customs.jpg","12":"assets3/z12_housing.jpg",
  "13":"assets3/z13_university.jpg","14":"assets3/z14_labs.jpg","15":"assets3/z15_school.jpg",
  "16":"assets3/z16_kindergarten.jpg","17":"assets3/z17_hospital.jpg","18":"assets3/z18_mall.jpg",
- "19":"assets3/z19_water.jpg",
+ "19":"assets3/z19_water.jpg","20":"assets3/z20_wastewater.jpg","21":"assets3/z21_substation.jpg",
+ "22":"assets3/z22_roads.jpg","23":"assets3/z23_park.jpg","24":"assets3/z24_control.jpg",
 }
 PHOTOS2={"06":"assets3/z06_tire.jpg"}
 
@@ -137,8 +138,18 @@ def sec_div(sec,ids,zs):
     txt(s,9.55,3.20,3.0,0.7,sec["sum"],32,True,W,sp=0.98)
     txt(s,9.55,4.10,3.0,1.9,sec["note"],8.2,False,MUT,sp=1.30)
 
+def cover2():
+    s=sld()
+    pic(s,'assets3/x_aerial.jpg',0,0,13.333,7.5)
+    rect(s,0,0,13.333,2.30,RGBColor(0x0E,0x11,0x16))
+    rect(s,0,6.30,13.333,1.20,RGBColor(0x0E,0x11,0x16))
+    txt(s,M,0.72,8.0,0.26,"SOKOL INDUSTRIAL PARK · ПРИЛОЖЕНИЕ",8,True,ACC,caps=True)
+    txt(s,M,1.06,9.4,0.8,"Двадцать четыре зоны по отдельности",30,True,W,sp=1.04)
+    txt(s,M,6.52,7.8,0.5,"103 слайда · 4 слайда на зону · фото по всем 24 зонам",9.5,False,SUB)
+    txt(s,9.35,6.52,3.3,0.5,"612,36 га · участки № 2–5\nбаланс варианта А",8.2,False,MUT,sp=1.3)
+
 if __name__=="__main__":
-    A.cover()
+    cover2()
     A.contents()
     for sec in A.SECTIONS:
         ids=list(sec["ids"])
