@@ -129,9 +129,17 @@ def z_facts(z,idx,total):
     txt(s,M+0.24,6.72,6.9,0.34,"СТАТУС: "+z['status'],8.6,True,RGBColor(0xE8,0xC9,0x9A))
     txt(s,M+7.30,6.72,4.9,0.34,"СВЯЗИ: "+z['links'],8.0,False,DIM)
 
+DIVPIC={"Производство":"assets3/z02_robotics2.jpg","Логистика":"assets3/z07_rail2.jpg",
+        "Город и наука":"assets3/z13_university2.jpg","Инженерия и среда":"assets3/z19_water2.jpg"}
+
 def sec_div(sec,ids,zs):
     s=sld()
     n=len(ids)
+    ph=DIVPIC.get(sec["title"])
+    if ph:
+        pic(s,ph,7.65,0,5.683,7.5)
+        rect(s,7.65,0,0.014,7.5,RGBColor(0x22,0x29,0x33))
+        rect(s,0,0,7.65,7.5,BG)
     txt(s,M,0.80,CW,0.3,"РАЗДЕЛ",8,True,ACC,caps=True)
     txt(s,M,1.24,9.4,0.95,sec["title"],40,True,W,sp=1.02)
     hair(s,2.72)

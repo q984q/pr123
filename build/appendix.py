@@ -43,6 +43,14 @@ def kicker(s,t,y=0.50):
 def hair(s,y,x=M,w=CW,color=LINE,h=0.010):
     rect(s,x,y,w,h,color)
 
+def pn(s,num=None):
+    """номер слайда в правом нижнем углу"""
+    try:
+        n=int(num if num is not None else len(s.part.package.presentation_part.presentation.slides._sldIdLst))
+    except Exception:
+        n=0
+    txt(s,12.14,7.10,0.6,0.22,str(n),7,False,DIM,align=PP_ALIGN.RIGHT)
+
 ZONES=[]
 
 ZONES.append(dict(n="01",name="Дата-центр и искусственный интеллект",sec="Производство",

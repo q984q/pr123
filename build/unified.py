@@ -2,7 +2,9 @@
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-import deck2 as D                      # строит 19 слайдов основной колоды
+import deck2 as D
+from pptx.dml.color import RGBColor
+from pptx.enum.text import PP_ALIGN                      # строит 19 слайдов основной колоды
 import appendix as A                   # палитра, хелперы, ZONES 01–06, SECTIONS
 import appendix2 as A2                 # зоны 07–24, фото, builders приложения
 
@@ -94,6 +96,109 @@ def add_notes(prs):
         sl.notes_slide.notes_text_frame.text = label + "\n\n" + text
 
 add_notes(MAIN)
+
+
+
+def slide_sez():
+    s = sld()
+    txt(s, M, 0.62, CW, 0.28, "14 · Правовой режим", 8.5, True, ACC, caps=True)
+    txt(s, M, 0.95, 10.6, 0.62, "Что даёт СЭЗ и чего она не даёт", 25, True, W, sp=1.04)
+    hair(s, 1.72)
+    txt(s, M, 1.90, 5.9, 0.26, "НАЛОГИ ДЛЯ УЧАСТНИКА", 7.6, True, ACC, caps=True)
+    rows = [("КПН", "−100 %"), ("Земельный налог", "−100 %"), ("Налог на имущество", "−100 %"), ("Плата за землю", "−100 %")]
+    for i, (k, v) in enumerate(rows):
+        y = 2.22 + i * 0.62
+        txt(s, M, y, 3.9, 0.3, k, 10.4, False, SUB)
+        txt(s, 4.95, y - 0.05, 1.9, 0.3, v, 13, True, ACC, align=A.PP_ALIGN.RIGHT)
+        hair(s, y + 0.44, M, 5.9, LINE)
+    txt(s, M, 4.92, 5.9, 0.26, "СВОБОДНАЯ ТАМОЖЕННАЯ ЗОНА", 7.6, True, ACC, caps=True)
+    txt(s, M, 5.22, 5.9, 0.9, "Ввоз оборудования без пошлин, НДС 0 % — при процедуре СТЗ и подтверждённом статусе участника.", 9.6, False, SUB, sp=1.34)
+    # right: сроки
+    rect(s, 6.95, 1.86, 5.66, 2.28, CARD)
+    txt(s, 7.18, 2.04, 5.0, 0.26, "СРОК РЕЖИМА", 7.4, True, ACC, caps=True)
+    for i, (k, v) in enumerate([("A", "7 лет"), ("B", "15 лет"), ("C", "25 лет")]):
+        x = 7.18 + i * 1.78
+        txt(s, x, 2.34, 1.0, 0.3, k, 15, True, W)
+        txt(s, x, 2.66, 1.5, 0.3, v, 11, False, SUB)
+    txt(s, 7.18, 3.16, 5.2, 0.9, "Вариант зависит от объёма вложений и вида деятельности. Для отдельных товаров — процедура свободной таможенной зоны.", 8.4, False, MUT, sp=1.34)
+    txt(s, 6.95, 4.32, 5.66, 0.26, "ЧТО ТРЕБУЕТСЯ ОТ ПРОЕКТА", 7.6, True, ACC, caps=True)
+    for j, it in enumerate(["Соответствие приоритетным видам деятельности",
+                            "Границы определяются правовым решением, а не заявлением",
+                            "Статус участника подтверждается отдельно"]):
+        txt(s, 6.95, 4.62 + j * 0.46, 5.5, 0.42, "—  " + it, 8.8, False, MUT, sp=1.24)
+    rect(s, M, 6.30, CW, 0.74, RGBColor(0x1A, 0x15, 0x0E))
+    rect(s, M, 6.30, 0.05, 0.74, ACC)
+    txt(s, M + 0.26, 6.42, 8.6, 0.56, "Срок закона о СЭЗ не означает, что льготы предоставлены парку или инвестору. Статус именно для Sokol требует согласования.", 9, True, RGBColor(0xE8, 0xC9, 0x9A), sp=1.3)
+    txt(s, 9.55, 6.44, 3.0, 0.5, "НК РК ст. 470 / 734 / 735\nЗакон Z1900000242 ст. 51–53\nТК ЕАЭС гл. 27", 7.2, False, DIM, sp=1.35)
+
+
+def slide_risks():
+    s = sld()
+    txt(s, M, 0.62, CW, 0.28, "15 · Риски и ответы", 8.5, True, ACC, caps=True)
+    txt(s, M, 0.95, 11.4, 0.62, "Пять вещей, которые могут остановить проект", 25, True, W, sp=1.04)
+    hair(s, 1.72)
+    hdr = [("РИСК", M), ("СТАТУС", 5.55), ("ЧТО ДЕЛАЕМ", 7.55)]
+    for k, x in hdr:
+        txt(s, x, 1.90, 2.2, 0.26, k, 7.4, True, ACC, caps=True)
+    data = [("Ветка не примкнёт к площадке", "не согласовано", "Запрос в КТЖ и Минтранс: привязка, техусловия. Без примыкания остаётся авто-сценарий — он тоже работает."),
+            ("Не дадут мощность и воду", "ТУ не выданы", "Запрос ТУ и точки подключения. Расчёт ведём по факту, а не по проектной мечте."),
+            ("Якорный резидент не придёт", "поиск не начат", "Market sounding по трём направлениям. Начинаем с одного продукта, а не со всего парка."),
+            ("Спрос на продукцию меньше", "не проверено", "Считаем рынок до проектирования: объём, импорт, конкуренты, цена входа."),
+            ("Земля останется сельхозземлёй", "перевод не начат", "ПДП и перевод категории — решение акимата. Пока его нет, любая площадка — намерение.")]
+    for i, (r, st, ans) in enumerate(data):
+        y = 2.24 + i * 0.86
+        txt(s, M, y, 4.5, 0.32, r, 10.2, True, W, sp=1.18)
+        txt(s, 5.55, y + 0.02, 1.9, 0.3, st, 8.0, False, ACC)
+        txt(s, 7.55, y, 5.05, 0.62, ans, 8.6, False, MUT, sp=1.28)
+        hair(s, y + 0.68, M, CW, LINE)
+    txt(s, M, 6.72, CW, 0.34, "Риск не скрывается, а называется. На каждый есть действие — и ни одно из пяти не требует денег прямо сейчас.", 8.8, False, DIM, sp=1.3)
+
+slide_sez()
+slide_risks()
+
+# --- переставить СЭЗ и риски перед слайдом «Решения»
+_lst = MAIN.slides._sldIdLst
+_ids = list(_lst)
+_new = _ids[-2:]
+for e in _new:
+    _lst.remove(e)
+for k, e in enumerate(_new):
+    _lst.insert(16 + k, e)
+
+
+
+def add_numbers(prs):
+    """номер слайда + ссылка на оглавление приложения"""
+    from pptx.util import Inches, Pt
+    sl = list(prs.slides)
+    contents = None
+    for s in sl[20:26]:
+        txts = " ".join(sh.text_frame.text for sh in s.shapes if sh.has_text_frame)
+        if "Что разобрано" in txts:
+            contents = s
+            break
+    for i, s in enumerate(sl, 1):
+        body = " ".join(sh.text_frame.text for sh in s.shapes if sh.has_text_frame)
+        if i in (1, len(sl)):
+            continue
+        tb = s.shapes.add_textbox(Inches(12.02), Inches(7.12), Inches(0.74), Inches(0.22))
+        tf = tb.text_frame; tf.word_wrap = False
+        tf.margin_left = 0; tf.margin_right = 0; tf.margin_top = 0; tf.margin_bottom = 0
+        r = tf.paragraphs[0].add_run(); r.text = str(i)
+        r.font.size = Pt(7.5); r.font.name = "Inter"
+        r.font.color.rgb = DIM if hasattr(D, "DIM") else A.DIM
+        # ссылка на оглавление для зон приложения
+        if contents is not None and ("ИЗ 24" in body):
+            lk = s.shapes.add_textbox(Inches(11.05), Inches(7.12), Inches(0.85), Inches(0.22))
+            lf = lk.text_frame; lf.word_wrap = False
+            lf.margin_left = 0; lf.margin_right = 0; lf.margin_top = 0; lf.margin_bottom = 0
+            pf = lf.paragraphs[0]
+            pf.alignment = PP_ALIGN.RIGHT
+            rr = pf.add_run(); rr.text = "оглавление"
+            rr.font.size = Pt(7.5); rr.font.name = "Inter"; rr.font.color.rgb = A.ACC
+            lk.click_action.target_slide = contents
+
+add_numbers(MAIN)
 
 MAIN.save("Sokol_единая_презентация.pptx")
 n = len(MAIN.slides._sldIdLst)
